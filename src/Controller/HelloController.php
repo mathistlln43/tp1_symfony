@@ -7,12 +7,22 @@
 
     class HelloController extends AbstractController
     {
-
-        public function sayHello(): Response
+        #[Route('/hello', name: 'app_hello')]
+        public function sayHello() : Response
         {
-            return new Response("Hello");
+            return $this->render('hello/bonjour.html.twig');
+        }
+    
+        #[Route('/bonjour/{nom}',name: 'app_bonjour')]
+        public function bonjour($nom)
+        {
+            //return new Response("Bonjour $nom !");
+            return $this->render('hello/bonjour_avec_param.html.twig', [
+            'nom' => $nom,
+            ]);
         }
     }
+    
 
 
 ?>
